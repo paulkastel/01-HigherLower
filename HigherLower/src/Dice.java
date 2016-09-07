@@ -11,12 +11,18 @@ import javax.swing.JOptionPane;
  * and open the template in the editor.
  */
 /**
+ * This class represent Frame with dice simulator. You can set number and
+ * dimension of dices and then just throw it. On frame you will see every single
+ * result at particular dice and total of them.
  *
  * @author kastel
  */
 public class Dice extends javax.swing.JFrame
 {
 
+	/**
+	 * List with labels showing result.
+	 */
 	private List<JLabel> lbl_list;
 
 	/**
@@ -26,7 +32,9 @@ public class Dice extends javax.swing.JFrame
 	{
 		lbl_list = new ArrayList<>();
 		initComponents();
-		this.setLocationRelativeTo(null);
+		this.setLocationRelativeTo(null); //frame appear at center of monitor
+
+		//Adding filter to textfield to be only for digits.
 		IntegerDocumentFilter.addTo(coins_num_txtbox);
 		IntegerDocumentFilter.addTo(dime_txtb);
 	}
@@ -45,22 +53,22 @@ public class Dice extends javax.swing.JFrame
         jLabel1 = new javax.swing.JLabel();
         btn_throwCoin = new javax.swing.JButton();
         dime_txtb = new javax.swing.JTextField();
+        jLabel2 = new javax.swing.JLabel();
+        jLabel3 = new javax.swing.JLabel();
+        lbl_total_dice = new javax.swing.JLabel();
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenu1 = new javax.swing.JMenu();
         runHigherLower = new javax.swing.JMenuItem();
         jMenu2 = new javax.swing.JMenu();
+        runHeadTail = new javax.swing.JMenuItem();
         jMenu3 = new javax.swing.JMenu();
+        runDieces = new javax.swing.JMenuItem();
+        jMenu4 = new javax.swing.JMenu();
+        runWhatnum = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Throw dice");
-
-        coins_num_txtbox.addKeyListener(new java.awt.event.KeyAdapter()
-        {
-            public void keyTyped(java.awt.event.KeyEvent evt)
-            {
-                coins_num_txtboxKeyTyped(evt);
-            }
-        });
+        setResizable(false);
 
         jLabel1.setText("Set number of dices:");
 
@@ -72,6 +80,14 @@ public class Dice extends javax.swing.JFrame
                 btn_throwCoinActionPerformed(evt);
             }
         });
+
+        jLabel2.setText("Total result of dices:");
+
+        jLabel3.setText("Set dice dimension:");
+
+        lbl_total_dice.setFont(new java.awt.Font("Tahoma", 0, 20)); // NOI18N
+        lbl_total_dice.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        lbl_total_dice.setText("0");
 
         jMenu1.setText("LowerHigher");
 
@@ -88,11 +104,47 @@ public class Dice extends javax.swing.JFrame
         jMenuBar1.add(jMenu1);
 
         jMenu2.setText("Head or Tails");
+
+        runHeadTail.setText("Run");
+        runHeadTail.addActionListener(new java.awt.event.ActionListener()
+        {
+            public void actionPerformed(java.awt.event.ActionEvent evt)
+            {
+                runHeadTailActionPerformed(evt);
+            }
+        });
+        jMenu2.add(runHeadTail);
+
         jMenuBar1.add(jMenu2);
 
         jMenu3.setText("Dieces");
         jMenu3.setEnabled(false);
+
+        runDieces.setText("Run");
+        runDieces.addActionListener(new java.awt.event.ActionListener()
+        {
+            public void actionPerformed(java.awt.event.ActionEvent evt)
+            {
+                runDiecesActionPerformed(evt);
+            }
+        });
+        jMenu3.add(runDieces);
+
         jMenuBar1.add(jMenu3);
+
+        jMenu4.setText("What number?");
+
+        runWhatnum.setText("Run");
+        runWhatnum.addActionListener(new java.awt.event.ActionListener()
+        {
+            public void actionPerformed(java.awt.event.ActionEvent evt)
+            {
+                runWhatnumActionPerformed(evt);
+            }
+        });
+        jMenu4.add(runWhatnum);
+
+        jMenuBar1.add(jMenu4);
 
         setJMenuBar(jMenuBar1);
 
@@ -102,73 +154,102 @@ public class Dice extends javax.swing.JFrame
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jLabel1)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jLabel1)
+                    .addComponent(jLabel3))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(dime_txtb)
                     .addComponent(coins_num_txtbox, javax.swing.GroupLayout.DEFAULT_SIZE, 55, Short.MAX_VALUE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(btn_throwCoin)
-                .addContainerGap(119, Short.MAX_VALUE))
+                .addGap(18, 18, 18)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel2)
+                    .addComponent(lbl_total_dice, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGap(29, 29, 29))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btn_throwCoin)
-                    .addComponent(coins_num_txtbox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(dime_txtb, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(219, Short.MAX_VALUE))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(lbl_total_dice, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(btn_throwCoin, javax.swing.GroupLayout.PREFERRED_SIZE, 54, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(coins_num_txtbox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(dime_txtb, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                .addContainerGap(214, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void coins_num_txtboxKeyTyped(java.awt.event.KeyEvent evt)//GEN-FIRST:event_coins_num_txtboxKeyTyped
-    {//GEN-HEADEREND:event_coins_num_txtboxKeyTyped
-
-    }//GEN-LAST:event_coins_num_txtboxKeyTyped
-
+	/**
+	 * Simulates throwing dices.
+	 *
+	 * @param evt
+	 */
     private void btn_throwCoinActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_btn_throwCoinActionPerformed
     {//GEN-HEADEREND:event_btn_throwCoinActionPerformed
-		deleteDiecesfromFrame();
-		int x = 10;
-		int j = 0;
-		int dice_dim = 3;
-		
-		Random r = new Random();
+		deleteDiecesfromFrame(); //clear list
+
+		int x = 10;				// begining x position on frame
+		int counter = 0;		//this variable is responsible for rows counting on form
+		int dice_dim = 3;		//k-dimension of dice
+		int total = 0;			//total result of dices
+		int num = 0;
+
+		Random rnd = new Random();
+
+		//dont throw with empty textfields
 		if (!coins_num_txtbox.getText().isEmpty() && !dime_txtb.getText().isEmpty())
 		{
-			if (Integer.parseInt(coins_num_txtbox.getText()) < 97 && Integer.parseInt(dime_txtb.getText()) > 2)
+			//you cant have to much dieces with inproper dimensions.
+			if (Integer.parseInt(coins_num_txtbox.getText()) < 151 && Integer.parseInt(dime_txtb.getText()) > 2 && Integer.parseInt(dime_txtb.getText()) < 101)
 			{
 				dice_dim = Integer.parseInt(dime_txtb.getText());
+
+				//foreach dice
 				for (int i = 0; i < Integer.parseInt(coins_num_txtbox.getText()); i++)
 				{
-					if (i % 12 == 0 && i != 0)
+					//begin new column if one is finished
+					if (i % 10 == 0 && i != 0)
 					{
-						x = x + 20;
-						j = 0;
+						x = x + 30;
+						counter = 0;
 					}
 
 					JLabel jab = new JLabel();
 
-					int num = r.nextInt(dice_dim) + 1;
+					//new dice with score and sum of it
+					num = rnd.nextInt(dice_dim) + 1;
+					total = num + total;
 					jab.setText(String.valueOf(num));
 
-					jab.setBounds(x, 30 + j * 20, 100, 30);
+					jab.setBounds(x, 65 + counter * 20, 100, 30);
 					lbl_list.add(jab);
 					this.add(jab);
-					j++;
+
+					counter++;
 				}
+				//at last you refresh frame with new labels and show score
 				this.revalidate();
 				this.repaint();
+				lbl_total_dice.setText(String.valueOf(total));
 			}
+			//Error messages
 			else
 			{
-				JOptionPane.showMessageDialog(null, "You can't throw more than 96 coins!\nDimension of dice need to be greater than 3.", "Incorrect values!", JOptionPane.ERROR_MESSAGE);
+				JOptionPane.showMessageDialog(null, "You can't throw more than 150 coins!\nDimension of dice need to be greater than 3 and lesser than 100.", "Incorrect values!", JOptionPane.ERROR_MESSAGE);
 			}
 		}
 		else
@@ -177,11 +258,27 @@ public class Dice extends javax.swing.JFrame
 		}
     }//GEN-LAST:event_btn_throwCoinActionPerformed
 
+	//=======================MENU SECTION==================================
     private void runHigherLowerActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_runHigherLowerActionPerformed
     {//GEN-HEADEREND:event_runHigherLowerActionPerformed
 		this.setVisible(false);
 		StartWindow.highlow.setVisible(true);
     }//GEN-LAST:event_runHigherLowerActionPerformed
+    private void runHeadTailActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_runHeadTailActionPerformed
+    {//GEN-HEADEREND:event_runHeadTailActionPerformed
+		this.setVisible(false);
+		StartWindow.headtail.setVisible(true);
+    }//GEN-LAST:event_runHeadTailActionPerformed
+    private void runDiecesActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_runDiecesActionPerformed
+    {//GEN-HEADEREND:event_runDiecesActionPerformed
+		this.setVisible(false);
+		StartWindow.dice.setVisible(true);
+    }//GEN-LAST:event_runDiecesActionPerformed
+    private void runWhatnumActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_runWhatnumActionPerformed
+    {//GEN-HEADEREND:event_runWhatnumActionPerformed
+		this.setVisible(false);
+		StartWindow.whatnum.setVisible(true);
+    }//GEN-LAST:event_runWhatnumActionPerformed
 
 	/**
 	 * @param args the command line arguments
@@ -233,13 +330,23 @@ public class Dice extends javax.swing.JFrame
     private javax.swing.JTextField coins_num_txtbox;
     private javax.swing.JTextField dime_txtb;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
     private javax.swing.JMenu jMenu1;
     private javax.swing.JMenu jMenu2;
     private javax.swing.JMenu jMenu3;
+    private javax.swing.JMenu jMenu4;
     private javax.swing.JMenuBar jMenuBar1;
+    private javax.swing.JLabel lbl_total_dice;
+    private javax.swing.JMenuItem runDieces;
+    private javax.swing.JMenuItem runHeadTail;
     private javax.swing.JMenuItem runHigherLower;
+    private javax.swing.JMenuItem runWhatnum;
     // End of variables declaration//GEN-END:variables
 
+	/**
+	 * Delete labels from Frame and clear List
+	 */
 	private void deleteDiecesfromFrame()
 	{
 		for (JLabel lbl : lbl_list)

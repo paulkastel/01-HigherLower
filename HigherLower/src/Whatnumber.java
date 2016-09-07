@@ -1,35 +1,24 @@
-
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Random;
-import javax.swing.JLabel;
-import javax.swing.JOptionPane;
-
 /*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
+
 /**
- * Simulates Harvey Dent. Multiple times.
+ * This class is resposible for "What number I'm thinking of" game and frame.
+ *
  * @author kastel
  */
-public class HeadTail extends javax.swing.JFrame
+public class Whatnumber extends javax.swing.JFrame
 {
-	/**
-	 * List with labels showing result of coins.
-	 */
-	private List<JLabel> lbl_list;
 
 	/**
-	 * Creates new form HeadTail
+	 * Creates new form Whatnumber
 	 */
-	public HeadTail()
+	public Whatnumber()
 	{
-		lbl_list = new ArrayList<>();
 		initComponents();
-		this.setLocationRelativeTo(null);				//set frame to center
-		IntegerDocumentFilter.addTo(coins_num_txtbox);	//secure textfield
+		this.setLocationRelativeTo(null);
 	}
 
 	/**
@@ -42,10 +31,6 @@ public class HeadTail extends javax.swing.JFrame
     private void initComponents()
     {
 
-        jTextField1 = new javax.swing.JTextField();
-        jLabel1 = new javax.swing.JLabel();
-        btn_throwCoin = new javax.swing.JButton();
-        coins_num_txtbox = new javax.swing.JTextField();
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenu1 = new javax.swing.JMenu();
         runHigherLower = new javax.swing.JMenuItem();
@@ -56,24 +41,9 @@ public class HeadTail extends javax.swing.JFrame
         jMenu4 = new javax.swing.JMenu();
         runWhatnum = new javax.swing.JMenuItem();
 
-        jTextField1.setText("jTextField1");
-
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setTitle("Head or Tail?");
-        setName("Head or Tails"); // NOI18N
-        setPreferredSize(new java.awt.Dimension(450, 360));
+        setTitle("What number?");
         setResizable(false);
-
-        jLabel1.setText("Set number of coins:");
-
-        btn_throwCoin.setText("Throw Coins");
-        btn_throwCoin.addActionListener(new java.awt.event.ActionListener()
-        {
-            public void actionPerformed(java.awt.event.ActionEvent evt)
-            {
-                btn_throwCoinActionPerformed(evt);
-            }
-        });
 
         jMenu1.setText("LowerHigher");
 
@@ -90,7 +60,6 @@ public class HeadTail extends javax.swing.JFrame
         jMenuBar1.add(jMenu1);
 
         jMenu2.setText("Head or Tails");
-        jMenu2.setEnabled(false);
 
         runHeadTail.setText("Run");
         runHeadTail.addActionListener(new java.awt.event.ActionListener()
@@ -119,6 +88,7 @@ public class HeadTail extends javax.swing.JFrame
         jMenuBar1.add(jMenu3);
 
         jMenu4.setText("What number?");
+        jMenu4.setEnabled(false);
 
         runWhatnum.setText("Run");
         runWhatnum.addActionListener(new java.awt.event.ActionListener()
@@ -138,120 +108,36 @@ public class HeadTail extends javax.swing.JFrame
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jLabel1)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(coins_num_txtbox, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(btn_throwCoin)
-                .addContainerGap(125, Short.MAX_VALUE))
+            .addGap(0, 400, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btn_throwCoin)
-                    .addComponent(coins_num_txtbox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(245, Short.MAX_VALUE))
+            .addGap(0, 279, Short.MAX_VALUE)
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-	/**
-	 * Delete labels from Frame and clear List
-	 */
-	private void deleteLablesfromFrame()
-	{
-		for (JLabel lbl : lbl_list)
-		{
-			lbl.setVisible(false);
-		}
-		lbl_list.clear();
-	}
-
-	/**
-	 * Throw coins in the air.
-	 * @param evt 
-	 */
-    private void btn_throwCoinActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_throwCoinActionPerformed
-		deleteLablesfromFrame();	//clear all labels
-		int x = 10;					//x position at frame
-		int counter = 0;			//row counter
-		
-		Random rnd = new Random();
-		
-		//cant throw coin if empty
-		if (!coins_num_txtbox.getText().isEmpty())
-		{
-			//to much coins
-			if (Integer.parseInt(coins_num_txtbox.getText()) < 97)
-			{
-				//foreach coin
-				for (int i = 0; i < Integer.parseInt(coins_num_txtbox.getText()); i++)
-				{
-					//reset position if to many rows in column
-					if (i % 12 == 0 && i != 0)
-					{
-						x = x + 50;
-						counter = 0;
-					}
-
-					//50% chances at side
-					JLabel jab = new JLabel();
-					if (rnd.nextBoolean())
-					{
-						jab.setText("HEAD");
-					}
-					else
-					{
-						jab.setText("TAIL");
-					}
-
-					//add label to list and frame
-					jab.setBounds(x, 30 + counter * 20, 100, 30);
-					lbl_list.add(jab);
-					this.add(jab);
-					counter++;
-				}
-				//refresh frame
-				this.revalidate();
-				this.repaint();
-			}
-			else	//ERROR MESSAGES
-			{
-				JOptionPane.showMessageDialog(null, "You can't throw more than 96 coins!", "Too rich!", JOptionPane.ERROR_MESSAGE);
-			}
-		}
-		else
-		{
-			JOptionPane.showMessageDialog(null, "Can't throw that cash!", "You are poor!", JOptionPane.ERROR_MESSAGE);
-		}
-    }//GEN-LAST:event_btn_throwCoinActionPerformed
-	
 	//=======================MENU SECTION==================================
     private void runHigherLowerActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_runHigherLowerActionPerformed
     {//GEN-HEADEREND:event_runHigherLowerActionPerformed
-        this.setVisible(false);
-        StartWindow.highlow.setVisible(true);
+		this.setVisible(false);
+		StartWindow.highlow.setVisible(true);
     }//GEN-LAST:event_runHigherLowerActionPerformed
     private void runHeadTailActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_runHeadTailActionPerformed
     {//GEN-HEADEREND:event_runHeadTailActionPerformed
-        this.setVisible(false);
-        StartWindow.headtail.setVisible(true);
+		this.setVisible(false);
+		StartWindow.headtail.setVisible(true);
     }//GEN-LAST:event_runHeadTailActionPerformed
     private void runDiecesActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_runDiecesActionPerformed
     {//GEN-HEADEREND:event_runDiecesActionPerformed
-        this.setVisible(false);
-        StartWindow.dice.setVisible(true);
+		this.setVisible(false);
+		StartWindow.dice.setVisible(true);
     }//GEN-LAST:event_runDiecesActionPerformed
     private void runWhatnumActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_runWhatnumActionPerformed
     {//GEN-HEADEREND:event_runWhatnumActionPerformed
-        this.setVisible(false);
-        StartWindow.whatnum.setVisible(true);
+		this.setVisible(false);
+		StartWindow.whatnum.setVisible(true);
     }//GEN-LAST:event_runWhatnumActionPerformed
 
 	/**
@@ -276,16 +162,16 @@ public class HeadTail extends javax.swing.JFrame
 			}
 		} catch (ClassNotFoundException ex)
 		{
-			java.util.logging.Logger.getLogger(HeadTail.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+			java.util.logging.Logger.getLogger(Whatnumber.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
 		} catch (InstantiationException ex)
 		{
-			java.util.logging.Logger.getLogger(HeadTail.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+			java.util.logging.Logger.getLogger(Whatnumber.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
 		} catch (IllegalAccessException ex)
 		{
-			java.util.logging.Logger.getLogger(HeadTail.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+			java.util.logging.Logger.getLogger(Whatnumber.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
 		} catch (javax.swing.UnsupportedLookAndFeelException ex)
 		{
-			java.util.logging.Logger.getLogger(HeadTail.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+			java.util.logging.Logger.getLogger(Whatnumber.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
 		}
 		//</editor-fold>
 
@@ -294,21 +180,17 @@ public class HeadTail extends javax.swing.JFrame
 		{
 			public void run()
 			{
-				new HeadTail().setVisible(true);
+				new Whatnumber().setVisible(true);
 			}
 		});
 	}
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton btn_throwCoin;
-    private javax.swing.JTextField coins_num_txtbox;
-    private javax.swing.JLabel jLabel1;
     private javax.swing.JMenu jMenu1;
     private javax.swing.JMenu jMenu2;
     private javax.swing.JMenu jMenu3;
     private javax.swing.JMenu jMenu4;
     private javax.swing.JMenuBar jMenuBar1;
-    private javax.swing.JTextField jTextField1;
     private javax.swing.JMenuItem runDieces;
     private javax.swing.JMenuItem runHeadTail;
     private javax.swing.JMenuItem runHigherLower;

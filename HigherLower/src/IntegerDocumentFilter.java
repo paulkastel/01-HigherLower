@@ -2,6 +2,10 @@
 import javax.swing.text.*;
 import java.awt.*;
 
+/**
+ * Filter for secure textfields to pass only digits
+ * @author STACKOVERFLOW
+ */
 public class IntegerDocumentFilter extends DocumentFilter
 {
 
