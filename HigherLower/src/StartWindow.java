@@ -40,7 +40,7 @@ public class StartWindow extends javax.swing.JFrame
         btn_lowehigh = new javax.swing.JButton();
         btn_headtail = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
-        btn_dieces = new javax.swing.JButton();
+        btn_dice = new javax.swing.JButton();
         btn_whatnumber = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -74,14 +74,14 @@ public class StartWindow extends javax.swing.JFrame
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel1.setText("Choose the game:");
 
-        btn_dieces.setBackground(new java.awt.Color(102, 153, 255));
-        btn_dieces.setFont(new java.awt.Font("MS Reference Sans Serif", 0, 14)); // NOI18N
-        btn_dieces.setText("Throw dice");
-        btn_dieces.addActionListener(new java.awt.event.ActionListener()
+        btn_dice.setBackground(new java.awt.Color(102, 153, 255));
+        btn_dice.setFont(new java.awt.Font("MS Reference Sans Serif", 0, 14)); // NOI18N
+        btn_dice.setText("Throw dice");
+        btn_dice.addActionListener(new java.awt.event.ActionListener()
         {
             public void actionPerformed(java.awt.event.ActionEvent evt)
             {
-                btn_diecesActionPerformed(evt);
+                btn_diceActionPerformed(evt);
             }
         });
 
@@ -106,7 +106,7 @@ public class StartWindow extends javax.swing.JFrame
                     .addComponent(btn_lowehigh, javax.swing.GroupLayout.DEFAULT_SIZE, 149, Short.MAX_VALUE)
                     .addComponent(btn_headtail, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(btn_dieces, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(btn_dice, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(btn_whatnumber, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addGap(93, 93, 93))
         );
@@ -123,7 +123,7 @@ public class StartWindow extends javax.swing.JFrame
                 .addGap(18, 18, 18)
                 .addComponent(btn_headtail)
                 .addGap(18, 18, 18)
-                .addComponent(btn_dieces)
+                .addComponent(btn_dice)
                 .addGap(18, 18, 18)
                 .addComponent(btn_whatnumber)
                 .addGap(50, 50, 50))
@@ -141,11 +141,11 @@ public class StartWindow extends javax.swing.JFrame
 		this.setVisible(false);
 		headtail.setVisible(true);
     }//GEN-LAST:event_btn_headtailActionPerformed
-    private void btn_diecesActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_btn_diecesActionPerformed
-    {//GEN-HEADEREND:event_btn_diecesActionPerformed
+    private void btn_diceActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_btn_diceActionPerformed
+    {//GEN-HEADEREND:event_btn_diceActionPerformed
 		this.setVisible(false);
 		dice.setVisible(true);
-    }//GEN-LAST:event_btn_diecesActionPerformed
+    }//GEN-LAST:event_btn_diceActionPerformed
     private void btn_whatnumberActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_btn_whatnumberActionPerformed
     {//GEN-HEADEREND:event_btn_whatnumberActionPerformed
 		this.setVisible(false);
@@ -203,7 +203,7 @@ public class StartWindow extends javax.swing.JFrame
 	}
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton btn_dieces;
+    private javax.swing.JButton btn_dice;
     private javax.swing.JButton btn_headtail;
     private javax.swing.JButton btn_lowehigh;
     private javax.swing.JButton btn_whatnumber;

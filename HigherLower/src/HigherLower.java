@@ -80,7 +80,7 @@ public class HigherLower extends javax.swing.JFrame
         jMenu2 = new javax.swing.JMenu();
         runHeadTail = new javax.swing.JMenuItem();
         jMenu3 = new javax.swing.JMenu();
-        runDieces = new javax.swing.JMenuItem();
+        runDice = new javax.swing.JMenuItem();
         jMenu4 = new javax.swing.JMenu();
         runWhatnum = new javax.swing.JMenuItem();
 
@@ -158,17 +158,17 @@ public class HigherLower extends javax.swing.JFrame
 
         jMenuBar1.add(jMenu2);
 
-        jMenu3.setText("Dieces");
+        jMenu3.setText("Dice");
 
-        runDieces.setText("Run");
-        runDieces.addActionListener(new java.awt.event.ActionListener()
+        runDice.setText("Run");
+        runDice.addActionListener(new java.awt.event.ActionListener()
         {
             public void actionPerformed(java.awt.event.ActionEvent evt)
             {
-                runDiecesActionPerformed(evt);
+                runDiceActionPerformed(evt);
             }
         });
-        jMenu3.add(runDieces);
+        jMenu3.add(runDice);
 
         jMenuBar1.add(jMenu3);
 
@@ -318,26 +318,29 @@ public class HigherLower extends javax.swing.JFrame
 			lbl_number.setText(String.valueOf(now_num));
 		}
     }//GEN-LAST:event_btn_lowerActionPerformed
-	//=======================MENU SECTION==================================
+
     private void runHigherLowerActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_runHigherLowerActionPerformed
     {//GEN-HEADEREND:event_runHigherLowerActionPerformed
-		this.setVisible(false);
-		StartWindow.highlow.setVisible(true);
+        this.setVisible(false);
+        StartWindow.highlow.setVisible(true);
     }//GEN-LAST:event_runHigherLowerActionPerformed
+
     private void runHeadTailActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_runHeadTailActionPerformed
     {//GEN-HEADEREND:event_runHeadTailActionPerformed
-		this.setVisible(false);
-		StartWindow.headtail.setVisible(true);
+        this.setVisible(false);
+        StartWindow.headtail.setVisible(true);
     }//GEN-LAST:event_runHeadTailActionPerformed
-    private void runDiecesActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_runDiecesActionPerformed
-    {//GEN-HEADEREND:event_runDiecesActionPerformed
-		this.setVisible(false);
-		StartWindow.dice.setVisible(true);
-    }//GEN-LAST:event_runDiecesActionPerformed
+
+    private void runDiceActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_runDiceActionPerformed
+    {//GEN-HEADEREND:event_runDiceActionPerformed
+        this.setVisible(false);
+        StartWindow.dice.setVisible(true);
+    }//GEN-LAST:event_runDiceActionPerformed
+
     private void runWhatnumActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_runWhatnumActionPerformed
     {//GEN-HEADEREND:event_runWhatnumActionPerformed
-		this.setVisible(false);
-		StartWindow.whatnum.setVisible(true);
+        this.setVisible(false);
+        StartWindow.whatnum.setVisible(true);
     }//GEN-LAST:event_runWhatnumActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -356,7 +359,7 @@ public class HigherLower extends javax.swing.JFrame
     private javax.swing.JLabel lbl_highscore;
     private javax.swing.JLabel lbl_number;
     private javax.swing.JLabel lbl_score;
-    private javax.swing.JMenuItem runDieces;
+    private javax.swing.JMenuItem runDice;
     private javax.swing.JMenuItem runHeadTail;
     private javax.swing.JMenuItem runHigherLower;
     private javax.swing.JMenuItem runWhatnum;

@@ -42,15 +42,15 @@
         </Menu>
         <Menu class="javax.swing.JMenu" name="jMenu3">
           <Properties>
-            <Property name="text" type="java.lang.String" value="Dieces"/>
+            <Property name="text" type="java.lang.String" value="Dice"/>
           </Properties>
           <SubComponents>
-            <MenuItem class="javax.swing.JMenuItem" name="runDieces">
+            <MenuItem class="javax.swing.JMenuItem" name="runDice">
               <Properties>
                 <Property name="text" type="java.lang.String" value="Run"/>
               </Properties>
               <Events>
-                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="runDiecesActionPerformed"/>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="runDiceActionPerformed"/>
               </Events>
             </MenuItem>
           </SubComponents>

@@ -34,7 +34,7 @@
                   <Component id="btn_lowehigh" linkSize="4" pref="149" max="32767" attributes="0"/>
                   <Component id="btn_headtail" linkSize="4" max="32767" attributes="0"/>
                   <Component id="jLabel1" alignment="0" max="32767" attributes="0"/>
-                  <Component id="btn_dieces" alignment="0" max="32767" attributes="0"/>
+                  <Component id="btn_dice" alignment="0" max="32767" attributes="0"/>
                   <Component id="btn_whatnumber" alignment="1" max="32767" attributes="0"/>
               </Group>
               <EmptySpace min="-2" pref="93" max="-2" attributes="0"/>
@@ -51,7 +51,7 @@
               <EmptySpace type="separate" max="-2" attributes="0"/>
               <Component id="btn_headtail" min="-2" max="-2" attributes="0"/>
               <EmptySpace type="separate" max="-2" attributes="0"/>
-              <Component id="btn_dieces" min="-2" max="-2" attributes="0"/>
+              <Component id="btn_dice" min="-2" max="-2" attributes="0"/>
               <EmptySpace type="separate" max="-2" attributes="0"/>
               <Component id="btn_whatnumber" min="-2" max="-2" attributes="0"/>
               <EmptySpace min="-2" pref="50" max="-2" attributes="0"/>
@@ -97,7 +97,7 @@
         <Property name="text" type="java.lang.String" value="Choose the game:"/>
       </Properties>
     </Component>
-    <Component class="javax.swing.JButton" name="btn_dieces">
+    <Component class="javax.swing.JButton" name="btn_dice">
       <Properties>
         <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
           <Color blue="ff" green="99" red="66" type="rgb"/>
@@ -108,7 +108,7 @@
         <Property name="text" type="java.lang.String" value="Throw dice"/>
       </Properties>
       <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btn_diecesActionPerformed"/>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btn_diceActionPerformed"/>
       </Events>
     </Component>
     <Component class="javax.swing.JButton" name="btn_whatnumber">

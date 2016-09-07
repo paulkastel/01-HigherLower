@@ -1,9 +1,12 @@
+
+import java.util.Random;
+import javax.swing.JOptionPane;
+
 /*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
 /**
  * This class is resposible for "What number I'm thinking of" game and frame.
  *
@@ -12,6 +15,12 @@
 public class Whatnumber extends javax.swing.JFrame
 {
 
+	private Random rnd;
+	int range;
+	int number;
+	int counter;
+	int highscore;
+
 	/**
 	 * Creates new form Whatnumber
 	 */
@@ -19,6 +28,14 @@ public class Whatnumber extends javax.swing.JFrame
 	{
 		initComponents();
 		this.setLocationRelativeTo(null);
+
+		IntegerDocumentFilter.addTo(txtb_numb);
+
+		rnd = new Random();
+		range = 1000;
+		number = rnd.nextInt(1000);
+		counter = 0;
+		highscore = Integer.MAX_VALUE;
 	}
 
 	/**
@@ -31,19 +48,49 @@ public class Whatnumber extends javax.swing.JFrame
     private void initComponents()
     {
 
+        jLabel1 = new javax.swing.JLabel();
+        txtb_numb = new javax.swing.JTextField();
+        btn_guess = new javax.swing.JButton();
+        lbl_result = new javax.swing.JLabel();
+        lbl_counter = new javax.swing.JLabel();
+        lbl_highscore = new javax.swing.JLabel();
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenu1 = new javax.swing.JMenu();
         runHigherLower = new javax.swing.JMenuItem();
         jMenu2 = new javax.swing.JMenu();
         runHeadTail = new javax.swing.JMenuItem();
         jMenu3 = new javax.swing.JMenu();
-        runDieces = new javax.swing.JMenuItem();
+        runDice = new javax.swing.JMenuItem();
         jMenu4 = new javax.swing.JMenu();
         runWhatnum = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("What number?");
         setResizable(false);
+
+        jLabel1.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        jLabel1.setText("I am thinking about number...?");
+
+        txtb_numb.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+
+        btn_guess.setText("I am guessing!");
+        btn_guess.addActionListener(new java.awt.event.ActionListener()
+        {
+            public void actionPerformed(java.awt.event.ActionEvent evt)
+            {
+                btn_guessActionPerformed(evt);
+            }
+        });
+
+        lbl_result.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+
+        lbl_counter.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        lbl_counter.setText("0");
+        lbl_counter.setToolTipText("How many times you tried");
+
+        lbl_highscore.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        lbl_highscore.setText("0");
+        lbl_highscore.setToolTipText("How many times you tried");
 
         jMenu1.setText("LowerHigher");
 
@@ -73,17 +120,17 @@ public class Whatnumber extends javax.swing.JFrame
 
         jMenuBar1.add(jMenu2);
 
-        jMenu3.setText("Dieces");
+        jMenu3.setText("Dice");
 
-        runDieces.setText("Run");
-        runDieces.addActionListener(new java.awt.event.ActionListener()
+        runDice.setText("Run");
+        runDice.addActionListener(new java.awt.event.ActionListener()
         {
             public void actionPerformed(java.awt.event.ActionEvent evt)
             {
-                runDiecesActionPerformed(evt);
+                runDiceActionPerformed(evt);
             }
         });
-        jMenu3.add(runDieces);
+        jMenu3.add(runDice);
 
         jMenuBar1.add(jMenu3);
 
@@ -108,11 +155,41 @@ public class Whatnumber extends javax.swing.JFrame
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 400, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addGap(79, 79, 79)
+                .addComponent(jLabel1)
+                .addContainerGap(88, Short.MAX_VALUE))
+            .addGroup(layout.createSequentialGroup()
+                .addGap(0, 0, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(btn_guess, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(txtb_numb))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(layout.createSequentialGroup()
+                .addGap(125, 125, 125)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(lbl_highscore, javax.swing.GroupLayout.PREFERRED_SIZE, 155, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                        .addComponent(lbl_result, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(lbl_counter, javax.swing.GroupLayout.PREFERRED_SIZE, 155, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 279, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jLabel1)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(txtb_numb, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(btn_guess, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(34, 34, 34)
+                .addComponent(lbl_result, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(lbl_counter)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(lbl_highscore)
+                .addContainerGap(59, Short.MAX_VALUE))
         );
 
         pack();
@@ -129,16 +206,70 @@ public class Whatnumber extends javax.swing.JFrame
 		this.setVisible(false);
 		StartWindow.headtail.setVisible(true);
     }//GEN-LAST:event_runHeadTailActionPerformed
-    private void runDiecesActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_runDiecesActionPerformed
-    {//GEN-HEADEREND:event_runDiecesActionPerformed
+    private void runDiceActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_runDiceActionPerformed
+    {//GEN-HEADEREND:event_runDiceActionPerformed
 		this.setVisible(false);
 		StartWindow.dice.setVisible(true);
-    }//GEN-LAST:event_runDiecesActionPerformed
+    }//GEN-LAST:event_runDiceActionPerformed
     private void runWhatnumActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_runWhatnumActionPerformed
     {//GEN-HEADEREND:event_runWhatnumActionPerformed
 		this.setVisible(false);
 		StartWindow.whatnum.setVisible(true);
     }//GEN-LAST:event_runWhatnumActionPerformed
+
+    private void btn_guessActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_btn_guessActionPerformed
+    {//GEN-HEADEREND:event_btn_guessActionPerformed
+		if (!txtb_numb.getText().isEmpty())
+		{
+			int guess = Integer.parseInt(String.valueOf(txtb_numb.getText()));
+			if (guess < number)
+			{
+				if (guess + 15 >= number)
+				{
+					lbl_result.setText("Number is higher but you are close!");
+				}
+				else
+				{
+					lbl_result.setText("My number is higher! Try again!");
+				}
+				counter++;
+				txtb_numb.setText("");
+				lbl_counter.setText(String.valueOf(counter));
+			}
+			else if (guess > number)
+			{
+				if (guess - 15 <= number)
+				{
+					lbl_result.setText("Number is lower but you are close!");
+				}
+				else
+				{
+					lbl_result.setText("My number is lower! Try again!");
+				}
+				counter++;
+				txtb_numb.setText("");
+				lbl_counter.setText(String.valueOf(counter));
+			}
+			else
+			{
+				lbl_result.setText("Correct! My number is " + number + "!");
+				lbl_counter.setText("Answered after: " + counter + " attempts!");
+				JOptionPane.showMessageDialog(null, "You guessed!", "Success!", JOptionPane.INFORMATION_MESSAGE);
+				txtb_numb.setText("");
+				counter = 0;
+				number = rnd.nextInt(range);
+			}
+			if (counter >= highscore)
+			{
+				highscore = counter;
+				lbl_highscore.setText(String.valueOf(highscore));
+			}
+		}
+		else
+		{
+			JOptionPane.showMessageDialog(null, "You must enter the number!", "Fill blank", JOptionPane.ERROR_MESSAGE);
+		}
+    }//GEN-LAST:event_btn_guessActionPerformed
 
 	/**
 	 * @param args the command line arguments
@@ -186,14 +317,20 @@ public class Whatnumber extends javax.swing.JFrame
 	}
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btn_guess;
+    private javax.swing.JLabel jLabel1;
     private javax.swing.JMenu jMenu1;
     private javax.swing.JMenu jMenu2;
     private javax.swing.JMenu jMenu3;
     private javax.swing.JMenu jMenu4;
     private javax.swing.JMenuBar jMenuBar1;
-    private javax.swing.JMenuItem runDieces;
+    private javax.swing.JLabel lbl_counter;
+    private javax.swing.JLabel lbl_highscore;
+    private javax.swing.JLabel lbl_result;
+    private javax.swing.JMenuItem runDice;
     private javax.swing.JMenuItem runHeadTail;
     private javax.swing.JMenuItem runHigherLower;
     private javax.swing.JMenuItem runWhatnum;
+    private javax.swing.JTextField txtb_numb;
     // End of variables declaration//GEN-END:variables
 }

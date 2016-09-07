@@ -36,16 +36,16 @@
         </Menu>
         <Menu class="javax.swing.JMenu" name="jMenu3">
           <Properties>
-            <Property name="text" type="java.lang.String" value="Dieces"/>
+            <Property name="text" type="java.lang.String" value="Dice"/>
             <Property name="enabled" type="boolean" value="false"/>
           </Properties>
           <SubComponents>
-            <MenuItem class="javax.swing.JMenuItem" name="runDieces">
+            <MenuItem class="javax.swing.JMenuItem" name="runDice">
               <Properties>
                 <Property name="text" type="java.lang.String" value="Run"/>
               </Properties>
               <Events>
-                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="runDiecesActionPerformed"/>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="runDiceActionPerformed"/>
               </Events>
             </MenuItem>
           </SubComponents>
@@ -104,14 +104,14 @@
                   <Component id="dime_txtb" max="32767" attributes="0"/>
                   <Component id="coins_num_txtbox" pref="55" max="32767" attributes="0"/>
               </Group>
-              <EmptySpace type="unrelated" max="-2" attributes="0"/>
-              <Component id="btn_throwCoin" min="-2" max="-2" attributes="0"/>
+              <EmptySpace type="separate" max="-2" attributes="0"/>
+              <Component id="btn_throwCoin" min="-2" pref="113" max="-2" attributes="0"/>
               <EmptySpace type="separate" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="0" attributes="0">
                   <Component id="jLabel2" min="-2" max="-2" attributes="0"/>
                   <Component id="lbl_total_dice" max="32767" attributes="0"/>
               </Group>
-              <EmptySpace min="-2" pref="29" max="-2" attributes="0"/>
+              <EmptySpace min="-2" max="-2" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -148,12 +148,12 @@
     </Component>
     <Component class="javax.swing.JLabel" name="jLabel1">
       <Properties>
-        <Property name="text" type="java.lang.String" value="Set number of dices:"/>
+        <Property name="text" type="java.lang.String" value="Set number of dice:"/>
       </Properties>
     </Component>
     <Component class="javax.swing.JButton" name="btn_throwCoin">
       <Properties>
-        <Property name="text" type="java.lang.String" value="Throw Dieces"/>
+        <Property name="text" type="java.lang.String" value="Throw Dice"/>
       </Properties>
       <Events>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btn_throwCoinActionPerformed"/>
@@ -163,7 +163,7 @@
     </Component>
     <Component class="javax.swing.JLabel" name="jLabel2">
       <Properties>
-        <Property name="text" type="java.lang.String" value="Total result of dices:"/>
+        <Property name="text" type="java.lang.String" value="Total result of dice:"/>
       </Properties>
     </Component>
     <Component class="javax.swing.JLabel" name="jLabel3">

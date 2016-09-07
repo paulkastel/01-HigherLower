@@ -62,7 +62,7 @@ public class Dice extends javax.swing.JFrame
         jMenu2 = new javax.swing.JMenu();
         runHeadTail = new javax.swing.JMenuItem();
         jMenu3 = new javax.swing.JMenu();
-        runDieces = new javax.swing.JMenuItem();
+        runDice = new javax.swing.JMenuItem();
         jMenu4 = new javax.swing.JMenu();
         runWhatnum = new javax.swing.JMenuItem();
 
@@ -70,9 +70,9 @@ public class Dice extends javax.swing.JFrame
         setTitle("Throw dice");
         setResizable(false);
 
-        jLabel1.setText("Set number of dices:");
+        jLabel1.setText("Set number of dice:");
 
-        btn_throwCoin.setText("Throw Dieces");
+        btn_throwCoin.setText("Throw Dice");
         btn_throwCoin.addActionListener(new java.awt.event.ActionListener()
         {
             public void actionPerformed(java.awt.event.ActionEvent evt)
@@ -81,7 +81,7 @@ public class Dice extends javax.swing.JFrame
             }
         });
 
-        jLabel2.setText("Total result of dices:");
+        jLabel2.setText("Total result of dice:");
 
         jLabel3.setText("Set dice dimension:");
 
@@ -117,18 +117,18 @@ public class Dice extends javax.swing.JFrame
 
         jMenuBar1.add(jMenu2);
 
-        jMenu3.setText("Dieces");
+        jMenu3.setText("Dice");
         jMenu3.setEnabled(false);
 
-        runDieces.setText("Run");
-        runDieces.addActionListener(new java.awt.event.ActionListener()
+        runDice.setText("Run");
+        runDice.addActionListener(new java.awt.event.ActionListener()
         {
             public void actionPerformed(java.awt.event.ActionEvent evt)
             {
-                runDiecesActionPerformed(evt);
+                runDiceActionPerformed(evt);
             }
         });
-        jMenu3.add(runDieces);
+        jMenu3.add(runDice);
 
         jMenuBar1.add(jMenu3);
 
@@ -161,13 +161,13 @@ public class Dice extends javax.swing.JFrame
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(dime_txtb)
                     .addComponent(coins_num_txtbox, javax.swing.GroupLayout.DEFAULT_SIZE, 55, Short.MAX_VALUE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(btn_throwCoin)
+                .addGap(18, 18, 18)
+                .addComponent(btn_throwCoin, javax.swing.GroupLayout.PREFERRED_SIZE, 113, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel2)
                     .addComponent(lbl_total_dice, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addGap(29, 29, 29))
+                .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -200,7 +200,7 @@ public class Dice extends javax.swing.JFrame
 	 */
     private void btn_throwCoinActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_btn_throwCoinActionPerformed
     {//GEN-HEADEREND:event_btn_throwCoinActionPerformed
-		deleteDiecesfromFrame(); //clear list
+		deleteDicefromFrame(); //clear list
 
 		int x = 10;				// begining x position on frame
 		int counter = 0;		//this variable is responsible for rows counting on form
@@ -258,26 +258,28 @@ public class Dice extends javax.swing.JFrame
 		}
     }//GEN-LAST:event_btn_throwCoinActionPerformed
 
-	//=======================MENU SECTION==================================
     private void runHigherLowerActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_runHigherLowerActionPerformed
     {//GEN-HEADEREND:event_runHigherLowerActionPerformed
-		this.setVisible(false);
-		StartWindow.highlow.setVisible(true);
+        this.setVisible(false);
+        StartWindow.highlow.setVisible(true);
     }//GEN-LAST:event_runHigherLowerActionPerformed
+
     private void runHeadTailActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_runHeadTailActionPerformed
     {//GEN-HEADEREND:event_runHeadTailActionPerformed
-		this.setVisible(false);
-		StartWindow.headtail.setVisible(true);
+        this.setVisible(false);
+        StartWindow.headtail.setVisible(true);
     }//GEN-LAST:event_runHeadTailActionPerformed
-    private void runDiecesActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_runDiecesActionPerformed
-    {//GEN-HEADEREND:event_runDiecesActionPerformed
-		this.setVisible(false);
-		StartWindow.dice.setVisible(true);
-    }//GEN-LAST:event_runDiecesActionPerformed
+
+    private void runDiceActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_runDiceActionPerformed
+    {//GEN-HEADEREND:event_runDiceActionPerformed
+        this.setVisible(false);
+        StartWindow.dice.setVisible(true);
+    }//GEN-LAST:event_runDiceActionPerformed
+
     private void runWhatnumActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_runWhatnumActionPerformed
     {//GEN-HEADEREND:event_runWhatnumActionPerformed
-		this.setVisible(false);
-		StartWindow.whatnum.setVisible(true);
+        this.setVisible(false);
+        StartWindow.whatnum.setVisible(true);
     }//GEN-LAST:event_runWhatnumActionPerformed
 
 	/**
@@ -338,7 +340,7 @@ public class Dice extends javax.swing.JFrame
     private javax.swing.JMenu jMenu4;
     private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JLabel lbl_total_dice;
-    private javax.swing.JMenuItem runDieces;
+    private javax.swing.JMenuItem runDice;
     private javax.swing.JMenuItem runHeadTail;
     private javax.swing.JMenuItem runHigherLower;
     private javax.swing.JMenuItem runWhatnum;
@@ -347,7 +349,7 @@ public class Dice extends javax.swing.JFrame
 	/**
 	 * Delete labels from Frame and clear List
 	 */
-	private void deleteDiecesfromFrame()
+	private void deleteDicefromFrame()
 	{
 		for (JLabel lbl : lbl_list)
 		{
