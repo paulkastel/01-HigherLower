@@ -15,11 +15,28 @@ import javax.swing.JOptionPane;
 public class Whatnumber extends javax.swing.JFrame
 {
 
+	/**
+	 * Random generator
+	 */
 	private Random rnd;
-	int range;
-	int number;
-	int counter;
-	int highscore;
+
+	/**
+	 * Set range of draw numbers
+	 */
+	private int range;
+
+	/**
+	 * Luckly number
+	 */
+	private int number;
+	/**
+	 * Counter of how many times you tried to guess
+	 */
+	private int counter;
+	/**
+	 * The lowest number of tries
+	 */
+	private int highscore;
 
 	/**
 	 * Creates new form Whatnumber
@@ -27,15 +44,16 @@ public class Whatnumber extends javax.swing.JFrame
 	public Whatnumber()
 	{
 		initComponents();
-		this.setLocationRelativeTo(null);
+		this.setLocationRelativeTo(null);		//center of screen
+		IntegerDocumentFilter.addTo(txtb_numb); //prevent from entering something else than digits
 
-		IntegerDocumentFilter.addTo(txtb_numb);
-
+		//initialization
 		rnd = new Random();
-		range = 1000;
-		number = rnd.nextInt(1000);
-		counter = 0;
-		highscore = Integer.MAX_VALUE;
+		range = 1000;	//setting the range 
+		number = rnd.nextInt(1000); //set the lucky number
+		counter = 0;	//reset counter
+		highscore = Integer.MAX_VALUE;	//highest avaiable number
+
 	}
 
 	/**
@@ -54,6 +72,7 @@ public class Whatnumber extends javax.swing.JFrame
         lbl_result = new javax.swing.JLabel();
         lbl_counter = new javax.swing.JLabel();
         lbl_highscore = new javax.swing.JLabel();
+        result_lbl = new javax.swing.JLabel();
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenu1 = new javax.swing.JMenu();
         runHigherLower = new javax.swing.JMenuItem();
@@ -73,6 +92,7 @@ public class Whatnumber extends javax.swing.JFrame
 
         txtb_numb.setHorizontalAlignment(javax.swing.JTextField.CENTER);
 
+        btn_guess.setBackground(new java.awt.Color(102, 153, 255));
         btn_guess.setText("I am guessing!");
         btn_guess.addActionListener(new java.awt.event.ActionListener()
         {
@@ -91,6 +111,10 @@ public class Whatnumber extends javax.swing.JFrame
         lbl_highscore.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         lbl_highscore.setText("0");
         lbl_highscore.setToolTipText("How many times you tried");
+
+        result_lbl.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        result_lbl.setText("Highscore:");
+        result_lbl.setToolTipText("How many times you tried");
 
         jMenu1.setText("LowerHigher");
 
@@ -167,11 +191,13 @@ public class Whatnumber extends javax.swing.JFrame
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(layout.createSequentialGroup()
                 .addGap(125, 125, 125)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(lbl_highscore, javax.swing.GroupLayout.PREFERRED_SIZE, 155, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                        .addComponent(lbl_result, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(lbl_counter, javax.swing.GroupLayout.PREFERRED_SIZE, 155, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(result_lbl, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addGap(18, 18, 18)
+                        .addComponent(lbl_highscore, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(lbl_result, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(lbl_counter, javax.swing.GroupLayout.PREFERRED_SIZE, 155, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -188,7 +214,9 @@ public class Whatnumber extends javax.swing.JFrame
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(lbl_counter)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(lbl_highscore)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(lbl_highscore)
+                    .addComponent(result_lbl))
                 .addContainerGap(59, Short.MAX_VALUE))
         );
 
@@ -216,14 +244,22 @@ public class Whatnumber extends javax.swing.JFrame
 		this.setVisible(false);
 		StartWindow.whatnum.setVisible(true);
     }//GEN-LAST:event_runWhatnumActionPerformed
-
+	/**
+	 * Checking your guess with correct answer.
+	 * @param evt
+	 */
     private void btn_guessActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_btn_guessActionPerformed
     {//GEN-HEADEREND:event_btn_guessActionPerformed
+		//if field is not empty
 		if (!txtb_numb.getText().isEmpty())
 		{
+			//get the value and compare
 			int guess = Integer.parseInt(String.valueOf(txtb_numb.getText()));
+			
+			//if lower
 			if (guess < number)
 			{
+				//if lower but close
 				if (guess + 15 >= number)
 				{
 					lbl_result.setText("Number is higher but you are close!");
@@ -236,8 +272,10 @@ public class Whatnumber extends javax.swing.JFrame
 				txtb_numb.setText("");
 				lbl_counter.setText(String.valueOf(counter));
 			}
+			//if higher
 			else if (guess > number)
 			{
+				//if higher but close
 				if (guess - 15 <= number)
 				{
 					lbl_result.setText("Number is lower but you are close!");
@@ -247,22 +285,24 @@ public class Whatnumber extends javax.swing.JFrame
 					lbl_result.setText("My number is lower! Try again!");
 				}
 				counter++;
-				txtb_numb.setText("");
 				lbl_counter.setText(String.valueOf(counter));
 			}
-			else
+			else //you guessed
 			{
+				//if you are the best
+				if (counter <= highscore)
+				{
+					highscore = counter;
+					lbl_highscore.setText(String.valueOf(counter));
+				}
+				//show message about win
 				lbl_result.setText("Correct! My number is " + number + "!");
 				lbl_counter.setText("Answered after: " + counter + " attempts!");
 				JOptionPane.showMessageDialog(null, "You guessed!", "Success!", JOptionPane.INFORMATION_MESSAGE);
-				txtb_numb.setText("");
+
+				//reset counter, play again
 				counter = 0;
 				number = rnd.nextInt(range);
-			}
-			if (counter >= highscore)
-			{
-				highscore = counter;
-				lbl_highscore.setText(String.valueOf(highscore));
 			}
 		}
 		else
@@ -291,16 +331,20 @@ public class Whatnumber extends javax.swing.JFrame
 					break;
 				}
 			}
-		} catch (ClassNotFoundException ex)
+		}
+		catch (ClassNotFoundException ex)
 		{
 			java.util.logging.Logger.getLogger(Whatnumber.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-		} catch (InstantiationException ex)
+		}
+		catch (InstantiationException ex)
 		{
 			java.util.logging.Logger.getLogger(Whatnumber.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-		} catch (IllegalAccessException ex)
+		}
+		catch (IllegalAccessException ex)
 		{
 			java.util.logging.Logger.getLogger(Whatnumber.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-		} catch (javax.swing.UnsupportedLookAndFeelException ex)
+		}
+		catch (javax.swing.UnsupportedLookAndFeelException ex)
 		{
 			java.util.logging.Logger.getLogger(Whatnumber.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
 		}
@@ -327,6 +371,7 @@ public class Whatnumber extends javax.swing.JFrame
     private javax.swing.JLabel lbl_counter;
     private javax.swing.JLabel lbl_highscore;
     private javax.swing.JLabel lbl_result;
+    private javax.swing.JLabel result_lbl;
     private javax.swing.JMenuItem runDice;
     private javax.swing.JMenuItem runHeadTail;
     private javax.swing.JMenuItem runHigherLower;

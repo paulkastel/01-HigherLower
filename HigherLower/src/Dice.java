@@ -68,10 +68,12 @@ public class Dice extends javax.swing.JFrame
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Throw dice");
+        setBackground(javax.swing.UIManager.getDefaults().getColor("FormattedTextField.selectionBackground"));
         setResizable(false);
 
-        jLabel1.setText("Set number of dice:");
+        jLabel1.setText("Set quantity of dice:");
 
+        btn_throwCoin.setBackground(new java.awt.Color(102, 153, 255));
         btn_throwCoin.setText("Throw Dice");
         btn_throwCoin.addActionListener(new java.awt.event.ActionListener()
         {

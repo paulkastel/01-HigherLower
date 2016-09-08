@@ -92,6 +92,7 @@ public class HigherLower extends javax.swing.JFrame
         setPreferredSize(new java.awt.Dimension(450, 360));
         setResizable(false);
 
+        btn_higher.setBackground(new java.awt.Color(102, 153, 255));
         btn_higher.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         btn_higher.setText("HIGHER");
         btn_higher.addActionListener(new java.awt.event.ActionListener()
@@ -102,6 +103,7 @@ public class HigherLower extends javax.swing.JFrame
             }
         });
 
+        btn_lower.setBackground(new java.awt.Color(102, 153, 255));
         btn_lower.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         btn_lower.setText("LOWER");
         btn_lower.addActionListener(new java.awt.event.ActionListener()

@@ -66,6 +66,7 @@ public class HeadTail extends javax.swing.JFrame
 
         jLabel1.setText("Set number of coins:");
 
+        btn_throwCoin.setBackground(new java.awt.Color(102, 153, 255));
         btn_throwCoin.setText("Throw Coins");
         btn_throwCoin.addActionListener(new java.awt.event.ActionListener()
         {
